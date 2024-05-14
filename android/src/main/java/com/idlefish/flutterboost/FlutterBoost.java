@@ -82,6 +82,8 @@ public class FlutterBoost {
 
         if (!engine.getDartExecutor().isExecutingDart()) {
             // Pre-warm the cached FlutterEngine.
+            MonkeyPatcher.patchResource(engine,options.getApkPath());
+
             engine.getNavigationChannel().setInitialRoute(options.initialRoute());
             engine.getDartExecutor().executeDartEntrypoint(new DartExecutor.DartEntrypoint(
                     FlutterMain.findAppBundlePath(), options.dartEntrypoint()));

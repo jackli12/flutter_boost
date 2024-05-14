@@ -9,18 +9,24 @@ public class FlutterBoostSetupOptions {
     private final boolean shouldOverrideBackForegroundEvent;
     private FlutterEngineProvider flutterEngineProvider;
 
+    private String apkPath;
+
+
     private FlutterBoostSetupOptions(Builder builder) {
         this.initialRoute = builder.initialRoute;
         this.dartEntrypoint = builder.dartEntrypoint;
         this.shellArgs = builder.shellArgs;
         this.shouldOverrideBackForegroundEvent = builder.shouldOverrideBackForegroundEvent;
         this.flutterEngineProvider = builder.flutterEngineProvider;
+        this.apkPath = builder.apkPath;
     }
 
     public static FlutterBoostSetupOptions createDefault() {
-      return new Builder().build();
+        return new Builder().build();
     }
 
+
+    public String getApkPath(){return  apkPath;}
     public String initialRoute() {
         return initialRoute;
     }
@@ -64,6 +70,7 @@ public class FlutterBoostSetupOptions {
     }
 
     public static class Builder {
+        private String apkPath;
         private String initialRoute = "/";
         private String dartEntrypoint = "main";
         private boolean shouldOverrideBackForegroundEvent = false;
@@ -73,17 +80,23 @@ public class FlutterBoostSetupOptions {
         public Builder() {
         }
 
-        public Builder initialRoute(String initialRoute){
+
+        public Builder setApkPath(String apkPath) {
+            this.apkPath = apkPath;
+            return this;
+        }
+
+        public Builder initialRoute(String initialRoute) {
             this.initialRoute = initialRoute;
             return this;
         }
 
-        public Builder dartEntrypoint(String dartEntrypoint){
+        public Builder dartEntrypoint(String dartEntrypoint) {
             this.dartEntrypoint = dartEntrypoint;
             return this;
         }
 
-        public Builder shellArgs(String[] shellArgs){
+        public Builder shellArgs(String[] shellArgs) {
             this.shellArgs = shellArgs;
             return this;
         }
